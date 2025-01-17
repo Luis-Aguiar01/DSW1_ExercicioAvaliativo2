@@ -10,26 +10,17 @@
 <meta charset="ISO-8859-1">
 <title>Welcome Page</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 
-<body class="bg-gradient-to-r from-black to-gray-800 min-h-screen flex flex-col font-mono items-center justify-center box-border">
+<body class="bg-gradient-to-r from-black to-gray-800 min-h-screen flex flex-col font-mono box-border">
 	
-	<div class="border-solid border-2 border-gray-400 rounded-lg w-2/3">
-		<h1 class="font-bold text-4xl text-center text-white mt-10 leading-relaxed">Welcome to your page, <%= user.getNome() %></h1>
+	<jsp:include page="includes/header.jsp" />
 	
-		<div class="flex font-bold text-white text-lg w-full justify-center gap-5 mb-10 mt-5">
-			<div>
-				<a href="application.do?action=register_users_page" class="bg-blue-700 w-1/4 py-4 px-4 text-center rounded-lg hover:bg-blue-600 cursor-pointer"><button>Cadastrar Usuários</button></a>
-				<a href="application.do?action=register_pedido_page" class="bg-blue-700 w-1/4 py-4 px-4 text-center rounded-lg hover:bg-blue-600 cursor-pointer"><button>Cadastrar Pedidos</button></a>
-				<a href="application.do?action=delete_pedido_page" class="bg-blue-700 w-1/4 py-4 px-4 text-center rounded-lg hover:bg-blue-600 cursor-pointer"><button>Deletar Pedidos</button></a>
-			</div>
-			<div>	
-				<a href="application.do?action=register_users_page" class="bg-blue-700 w-1/4 py-4 px-4 text-center rounded-lg hover:bg-blue-600 cursor-pointer"><button>Consultar Pedidos</button></a>
-				<a href="application.do?action=register_users_page" class="bg-blue-700 w-1/4 py-4 px-4 text-center rounded-lg hover:bg-blue-600 cursor-pointer"><button>Cadastrar Usuários</button></a>
-				<a href="application.do?action=logout" class="bg-red-700  w-1/4 py-4 px-4 text-center rounded-lg hover:bg-red-500 cursor-pointer"><button>Logout</button></a>
-			</div>
-		</div>
+	<div class="self-center w-2/3 mt-8">
+		<h1 class="font-bold text-4xl text-center text-white mt-10 leading-relaxed">Welcome to your page, <%= user.getNome() %> <span> &#128075;</span></h1>
 	</div>	
 	
 </body>
-</html>>
+</html>

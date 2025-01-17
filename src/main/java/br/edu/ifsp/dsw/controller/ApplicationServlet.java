@@ -38,6 +38,8 @@ public class ApplicationServlet extends HttpServlet {
 			command = new DeletePedidoPageCommand();
 		} else if ("delete_pedido".equals(action)) {
 			command = new DeletePedidoCommand();
+		} else if ("home_page".equals(action)) {
+			command = new HomePageCommand();
 		}
 		
 		var view = command.execute(request, response);
