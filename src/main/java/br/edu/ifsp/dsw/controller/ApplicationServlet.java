@@ -8,6 +8,8 @@ import br.edu.ifsp.dsw.controller.command.LoginPageCommand;
 import br.edu.ifsp.dsw.controller.command.LogoutCommand;
 import br.edu.ifsp.dsw.controller.command.RegisterCommand;
 import br.edu.ifsp.dsw.controller.command.RegisterPageCommand;
+import br.edu.ifsp.dsw.controller.command.RegisterPedidoCommand;
+import br.edu.ifsp.dsw.controller.command.RegisterPedidoPageCommand;
 import br.edu.ifsp.dsw.controller.command.RegisterUsersPageCommand;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -38,6 +40,12 @@ public class ApplicationServlet extends HttpServlet {
 			command = new RegisterCommand();
 		} else if ("register_users_page".equals(action)) {
 			command = new RegisterUsersPageCommand();
+		} else if ("register_pedido_page".equals(action)) {
+			command = new RegisterPedidoPageCommand();
+		} else if ("register_pedido".equals(action)) {
+			command = new RegisterPedidoCommand();
+		} else if ("delete_pedido_page".equals(action)) {
+			
 		}
 		
 		var view = command.execute(request, response);

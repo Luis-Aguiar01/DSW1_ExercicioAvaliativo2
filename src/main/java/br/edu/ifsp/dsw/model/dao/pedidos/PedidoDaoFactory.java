@@ -1,5 +1,7 @@
 package br.edu.ifsp.dsw.model.dao.pedidos;
 
+import br.edu.ifsp.dsw.model.dao.user.UsuarioDaoFactory;
+
 public class PedidoDaoFactory {
 	
 	private PedidoDaoType type;
@@ -15,7 +17,7 @@ public class PedidoDaoFactory {
 	public PedidoDao factory() {
 		switch (type) {
 			case DATABASE:
-				return new PedidoDaoImp();
+				return new PedidoDaoImp(new UsuarioDaoFactory().factory());
 			default:
 				throw new IllegalArgumentException("Tipo de dado inválido");
 		}

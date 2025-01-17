@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifsp.dsw.model.dao.connection.DatabaseConnectionFactory;
+import br.edu.ifsp.dsw.model.dao.user.UsuarioDao;
 import br.edu.ifsp.dsw.model.entity.Pedido;
 
 class PedidoDaoImp implements PedidoDao {
@@ -21,6 +22,15 @@ class PedidoDaoImp implements PedidoDao {
 	
 	private static final String GET_ALL_PEDIDO_BY_EMAIL = 
 			"SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario FROM pedido WHERE email_usuario = ?";
+	
+	private static final String FIND_PEDIDO_BY_ID = 
+			"SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario FROM pedido WHERE id = ?";
+	
+	private UsuarioDao usuarioDao;
+	
+	public PedidoDaoImp(UsuarioDao usuarioDao) {
+		this.usuarioDao = usuarioDao;
+	}
 	
 	@Override
 	public boolean create(Pedido pedido) {
@@ -99,6 +109,9 @@ class PedidoDaoImp implements PedidoDao {
 				pedido.setIdPedido(rs.getInt("id_pedido"));
 				pedido.setPrice(rs.getDouble("valor"));
 				
+				var user = usuarioDao.findByEmail(rs.getString("email"));
+				pedido.setUsuario(user);
+				
 				pedidos.add(pedido);
 			}
 		}
@@ -125,6 +138,9 @@ var pedidos = new ArrayList<Pedido>();
 				pedido.setIdPedido(rs.getInt("id_pedido"));
 				pedido.setPrice(rs.getDouble("valor"));
 				
+				var user = usuarioDao.findByEmail(rs.getString("email"));
+				pedido.setUsuario(user);
+				
 				pedidos.add(pedido);
 			}
 		}
@@ -133,5 +149,33 @@ var pedidos = new ArrayList<Pedido>();
 		}
 		
 		return pedidos;
+	}
+
+	@Override
+	public Pedido findById(int id) {
+		Pedido pedido = null;
+		
+		try (var conn = new DatabaseConnectionFactory().factory()) {
+			var ps = conn.prepareStatement(FIND_PEDIDO_BY_ID);
+			ps.setInt(1, id);
+			
+			var rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				pedido = new Pedido();
+				pedido.setDescricao(rs.getString("descricao"));
+				pedido.setEnderecoEntrega(rs.getString("endereco_entrega"));
+				pedido.setIdPedido(rs.getInt("id_pedido"));
+				pedido.setPrice(rs.getDouble("price"));
+				
+				var user = usuarioDao.findByEmail(rs.getString("email"));
+				pedido.setUsuario(user);
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return pedido;
 	}
 }

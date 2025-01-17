@@ -12,13 +12,17 @@ public class Pedido {
 		super();
 	}
 
-	public Pedido(int idPedido, String enderecoEntrega, double price, String descricao, Usuario usuario) {
+	public Pedido(String enderecoEntrega, double price, String descricao, Usuario usuario) {
 		super();
-		this.idPedido = idPedido;
 		this.enderecoEntrega = enderecoEntrega;
 		this.price = price;
 		this.descricao = descricao;
 		this.usuario = usuario;
+	}
+
+	public Pedido(int idPedido, String enderecoEntrega, double price, String descricao, Usuario usuario) {
+		this(enderecoEntrega, price, descricao, usuario);
+		this.idPedido = idPedido;
 	}
 
 	public int getIdPedido() {
