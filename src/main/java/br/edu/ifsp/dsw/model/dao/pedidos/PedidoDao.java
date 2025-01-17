@@ -16,4 +16,5 @@ public interface PedidoDao {
 	
 	List<Pedido> getAllByEmail(String email);
 	
+	Pedido findById(int id);
 }

@@ -21,7 +21,7 @@
 			<div>
 				<a href="application.do?action=register_users_page" class="bg-blue-700 w-1/4 py-4 px-4 text-center rounded-lg hover:bg-blue-600 cursor-pointer"><button>Cadastrar Usuários</button></a>
 				<a href="application.do?action=register_pedido_page" class="bg-blue-700 w-1/4 py-4 px-4 text-center rounded-lg hover:bg-blue-600 cursor-pointer"><button>Cadastrar Pedidos</button></a>
-				<a href="application.do?action=register_users_page" class="bg-blue-700 w-1/4 py-4 px-4 text-center rounded-lg hover:bg-blue-600 cursor-pointer"><button>Alterar Pedidos</button></a>
+				<a href="application.do?action=delete_pedido_page" class="bg-blue-700 w-1/4 py-4 px-4 text-center rounded-lg hover:bg-blue-600 cursor-pointer"><button>Deletar Pedidos</button></a>
 			</div>
 			<div>	
 				<a href="application.do?action=register_users_page" class="bg-blue-700 w-1/4 py-4 px-4 text-center rounded-lg hover:bg-blue-600 cursor-pointer"><button>Consultar Pedidos</button></a>

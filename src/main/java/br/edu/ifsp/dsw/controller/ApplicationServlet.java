@@ -2,20 +2,10 @@ package br.edu.ifsp.dsw.controller;
 
 import java.io.IOException;
 
-import br.edu.ifsp.dsw.controller.command.Command;
-import br.edu.ifsp.dsw.controller.command.LoginCommand;
-import br.edu.ifsp.dsw.controller.command.LoginPageCommand;
-import br.edu.ifsp.dsw.controller.command.LogoutCommand;
-import br.edu.ifsp.dsw.controller.command.RegisterCommand;
-import br.edu.ifsp.dsw.controller.command.RegisterPageCommand;
-import br.edu.ifsp.dsw.controller.command.RegisterPedidoCommand;
-import br.edu.ifsp.dsw.controller.command.RegisterPedidoPageCommand;
-import br.edu.ifsp.dsw.controller.command.RegisterUsersPageCommand;
+import br.edu.ifsp.dsw.controller.command.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.*;
 
 @WebServlet("/application.do")
 public class ApplicationServlet extends HttpServlet {
@@ -45,7 +35,9 @@ public class ApplicationServlet extends HttpServlet {
 		} else if ("register_pedido".equals(action)) {
 			command = new RegisterPedidoCommand();
 		} else if ("delete_pedido_page".equals(action)) {
-			
+			command = new DeletePedidoPageCommand();
+		} else if ("delete_pedido".equals(action)) {
+			command = new DeletePedidoCommand();
 		}
 		
 		var view = command.execute(request, response);

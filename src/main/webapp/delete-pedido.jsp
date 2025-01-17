@@ -13,18 +13,18 @@
 <body class="flex flex-col justify-center items-center min-h-screen font-mono bg-gradient-to-r from-black to-gray-800">
 	
 	<div class="flex flex-col p-10 w-1/2 bg-white">
-		<h1 class="self-center font-bold text-3xl mb-10">Sign In</h1>
+		<h1 class="self-center font-bold text-3xl mb-10">Delete Order</h1>
 		
 		<% if (message != null) {
 			var error = Boolean.parseBoolean(message); 
 			if (error) {
 		%>
 			<div class="self-center justify-self-start mb-5 text-red-700 text-xl">
-					Delete failed. Email unavailable.
+					Delete failed.
 			</div>
 		<%  } else { %>
 			<div class="self-center justify-self-start mb-5 text-green-700 text-xl">
-					Register success.
+					Delete success.
 			</div>
 		<%  }  %>
 		<% } %>
