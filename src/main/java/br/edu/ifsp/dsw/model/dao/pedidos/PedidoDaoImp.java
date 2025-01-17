@@ -9,22 +9,32 @@ import br.edu.ifsp.dsw.model.entity.Pedido;
 
 class PedidoDaoImp implements PedidoDao {
 	
-	private static final String CREATE_PEDIDO_SQL = 
-			"INSERT INTO pedido (endereco_entrega, valor, descricao, email_usuario) VALUES (?, ?, ?, ?)";
-	
+	private static final String CREATE_PEDIDO_SQL = "INSERT INTO pedido (endereco_entrega, valor, descricao, email_usuario) VALUES (?, ?, ?, ?)";
 	private static final String DELETE_PEDIDO_SQL = "DELETE FROM pedido WHERE id_pedido = ?";
+	private static final String UPDATE_PEDIDO_SQL =  "UPDATE pedido SET endereco_entrega = ?, valor = ?, descricao = ? WHERE id_pedido = ?";
+	private static final String GET_ALL_PEDIDO_SQL = "SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario FROM pedido";
+	private static final String GET_ALL_PEDIDO_BY_EMAIL = "SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario FROM pedido WHERE email_usuario = ?";
+	private static final String FIND_PEDIDO_BY_ID = "SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario FROM pedido WHERE id = ?";
+	private static final String CREATE_TABLE_PEDIDO = "CREATE TABLE IF NOT EXISTS pedido (\r\n"
+			+ "	id_pedido INT AUTO_INCREMENT PRIMARY KEY,\r\n"
+			+ "    endereco_entrega VARCHAR(200) NOT NULL,\r\n"
+			+ "    valor DECIMAL(10, 2) NOT NULL,\r\n"
+			+ "    descricao VARCHAR(300),\r\n"
+			+ "    email_usuario VARCHAR(50) NOT NULL,\r\n"
+			+ "    \r\n"
+			+ "    FOREIGN KEY (email_usuario) REFERENCES usuario(email) \r\n"
+			+ "    ON UPDATE CASCADE ON DELETE CASCADE\r\n"
+			+ ");";
 	
-	private static final String UPDATE_PEDIDO_SQL = 
-			"UPDATE pedido SET endereco_entrega = ?, valor = ?, descricao = ? WHERE id_pedido = ?";
-	
-	private static final String GET_ALL_PEDIDO_SQL = 
-			"SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario FROM pedido";
-	
-	private static final String GET_ALL_PEDIDO_BY_EMAIL = 
-			"SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario FROM pedido WHERE email_usuario = ?";
-	
-	private static final String FIND_PEDIDO_BY_ID = 
-			"SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario FROM pedido WHERE id = ?";
+	static {
+		try (var conn = new DatabaseConnectionFactory().factory()) {
+			var ps = conn.prepareStatement(CREATE_TABLE_PEDIDO);
+			ps.execute();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	private UsuarioDao usuarioDao;
 	

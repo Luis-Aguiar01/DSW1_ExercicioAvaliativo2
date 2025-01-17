@@ -8,7 +8,7 @@ public class DatabaseConnectionFactory {
 	private DatabaseType type;
 	
 	public DatabaseConnectionFactory() {
-		this.type = DatabaseType.MYSQL;
+		this.type = DatabaseType.POSTGRE;
 	}
 	
 	public DatabaseConnectionFactory(DatabaseType type) {
@@ -19,13 +19,14 @@ public class DatabaseConnectionFactory {
 		switch (type) {
 			case MYSQL:
 				return MySqlDatabaseConnection.getConnection();
+			case POSTGRE:
+				return PostgreDatabaseConnection.getConnection();
 			default:
 				throw new IllegalArgumentException("Valor da conexão inválida.");
 		}
 	}
 	
 	public enum DatabaseType {
-		MYSQL
+		MYSQL, POSTGRE
 	}
-	
 }

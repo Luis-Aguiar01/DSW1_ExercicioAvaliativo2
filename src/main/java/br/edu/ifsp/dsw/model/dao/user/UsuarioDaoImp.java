@@ -5,11 +5,37 @@ import br.edu.ifsp.dsw.model.entity.Usuario;
 
 class UsuarioDaoImp implements UsuarioDao {
 	
-	private static final String CREATE_USER_SQL = 
-			"INSERT INTO usuario (email, nome, senha) VALUES (?, ?, ?)";
+	private static final String CREATE_USER_SQL =  "INSERT INTO usuario (email, nome, senha) VALUES (?, ?, ?)";
+	private static final String FIND_USER_BY_EMAIL_SQL = "SELECT email, nome, senha FROM usuario WHERE email = ?";
+	private static final String CHECK_USER_ALREADY_EXISTS_SQL = "SELECT COUNT(*) FROM usuario WHERE email = ?";
+	private static final String USER_TABLE = "CREATE TABLE IF NOT EXISTS usuario (\r\n"
+			+ "	email VARCHAR(50) PRIMARY KEY,\r\n"
+			+ "    nome VARCHAR(100) NOT NULL,\r\n"
+			+ "    senha VARCHAR(45) NOT NULL\r\n"
+			+ ");\r\n"
+			+ "";
 	
-	private static final String FIND_USER_BY_EMAIL_SQL = 
-			"SELECT email, nome, senha FROM usuario WHERE email = ?";
+	static {
+		try (var conn = new DatabaseConnectionFactory().factory()) {
+			var ps = conn.prepareStatement(USER_TABLE);
+			ps.execute();
+			
+			ps = conn.prepareStatement(CHECK_USER_ALREADY_EXISTS_SQL);
+			ps.setString(1, "admin@admin.com");
+			var rs = ps.executeQuery();
+			
+			if (rs.next() && rs.getInt(1) == 0) {
+				ps = conn.prepareStatement(CREATE_USER_SQL);
+				ps.setString(1, "admin@admin.com");
+				ps.setString(2, "admin");
+				ps.setString(3, "admin");
+				ps.execute();
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	@Override
 	public boolean create(Usuario usuario) {
