@@ -22,7 +22,7 @@ public class RegisterPedidoCommand implements Command {
 		var userDao = new UsuarioDaoFactory().factory();
 		
 		var findedUser = userDao.findByEmail(email);
-		
+			
 		if (findedUser == null) {
 			return "register-pedido.jsp?error=true";
 		}

@@ -19,7 +19,7 @@
 			<span>Cadastro</span>
 		</a>
 		
-		<a href="application.do?action=home_page_pedido" class="flex items-center gap-2 border-b-2 border-transparent hover:border-white pb-1 text-lg font-bold">
+		<a href="application.do?action=page_pedidos" class="flex items-center gap-2 border-b-2 border-transparent hover:border-white pb-1 text-lg font-bold">
 			<span class="material-icons text-4xl">article</span>
 			<span>Pedidos</span>
 		</a>

@@ -15,26 +15,6 @@ class PedidoDaoImp implements PedidoDao {
 	private static final String GET_ALL_PEDIDO_SQL = "SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario FROM pedido";
 	private static final String GET_ALL_PEDIDO_BY_EMAIL = "SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario FROM pedido WHERE email_usuario = ?";
 	private static final String FIND_PEDIDO_BY_ID = "SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario FROM pedido WHERE id = ?";
-	private static final String CREATE_TABLE_PEDIDO = "CREATE TABLE IF NOT EXISTS pedido (\r\n"
-			+ "	id_pedido INT AUTO_INCREMENT PRIMARY KEY,\r\n"
-			+ "    endereco_entrega VARCHAR(200) NOT NULL,\r\n"
-			+ "    valor DECIMAL(10, 2) NOT NULL,\r\n"
-			+ "    descricao VARCHAR(300),\r\n"
-			+ "    email_usuario VARCHAR(50) NOT NULL,\r\n"
-			+ "    \r\n"
-			+ "    FOREIGN KEY (email_usuario) REFERENCES usuario(email) \r\n"
-			+ "    ON UPDATE CASCADE ON DELETE CASCADE\r\n"
-			+ ");";
-	
-	static {
-		try (var conn = new DatabaseConnectionFactory().factory()) {
-			var ps = conn.prepareStatement(CREATE_TABLE_PEDIDO);
-			ps.execute();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 	
 	private UsuarioDao usuarioDao;
 	
@@ -119,7 +99,7 @@ class PedidoDaoImp implements PedidoDao {
 				pedido.setIdPedido(rs.getInt("id_pedido"));
 				pedido.setPrice(rs.getDouble("valor"));
 				
-				var user = usuarioDao.findByEmail(rs.getString("email"));
+				var user = usuarioDao.findByEmail(rs.getString("email_usuario"));
 				pedido.setUsuario(user);
 				
 				pedidos.add(pedido);

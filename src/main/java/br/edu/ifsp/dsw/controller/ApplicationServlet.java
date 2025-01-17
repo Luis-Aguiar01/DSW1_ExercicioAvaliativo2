@@ -34,13 +34,13 @@ public class ApplicationServlet extends HttpServlet {
 			command = new RegisterPedidoPageCommand();
 		} else if ("register_pedido".equals(action)) {
 			command = new RegisterPedidoCommand();
-		} else if ("delete_pedido_page".equals(action)) {
-			command = new DeletePedidoPageCommand();
 		} else if ("delete_pedido".equals(action)) {
 			command = new DeletePedidoCommand();
 		} else if ("home_page".equals(action)) {
 			command = new HomePageCommand();
-		}
+		} else if ("page_pedidos".equals(action)) {
+			command = new HomePagePedidosCommand();
+		} 
 		
 		var view = command.execute(request, response);
 		var dispatcher = request.getRequestDispatcher(view);

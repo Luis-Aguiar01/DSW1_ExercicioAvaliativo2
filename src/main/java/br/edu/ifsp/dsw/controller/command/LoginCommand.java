@@ -24,6 +24,6 @@ public class LoginCommand implements Command {
 		var session = request.getSession();
 		session.setAttribute("user", findedUser);
 		
-		return "logged-page.jsp";
+		return "index.jsp";
 	}
 }
