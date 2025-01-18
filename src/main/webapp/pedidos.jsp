@@ -20,7 +20,7 @@
 	<jsp:include page="includes/header.jsp" />
 	
 	<a href="application.do?action=register_pedido_page" class="self-end mt-5 mr-20">	
-		<button class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-white">Adicionar</button>
+		<button class="bg-green-600 hover:bg-green-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-white">Adicionar</button>
 	</a>
 	
 	<div class="flex self-center flex-wrap items-center justify-center gap-5 mt-5">
@@ -34,7 +34,7 @@
 	            </h3>
 	
 	            <p class="mt-4 text-[#0070FF] text-sm font-bold">
-	            	Nome do Cliente: <span class="text-white"><%= pedido.getUsuario().getNome() %></span>
+	            	Nome do Cliente: <span class="text-white"><%= pedido.getNomeCliente() %></span>
 	            </p>
 	
 	            <p class="mt-4 text-[#0070FF] text-sm font-bold">
@@ -45,22 +45,24 @@
 	            	Valor: <span class="text-white">R$ <%= pedido.getPrice() %></span>
 	            </p>
 	
-	            <p class="mt-4 text-[#0070FF] text-sm font-bold">
-	            	E-mail do Usuário: <span class="text-white"><%= pedido.getUsuario().getEmail() %></span>
-	            </p>
-	
 	            <div class="mt-4 flex items-center justify-center gap-2">
 	                <a href="application.do?action=update_pedidos_page&id=<%= pedido.getIdPedido() %>">
-	                	<button class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300">Editar</button>
+	                	<button class="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300">Editar</button>
 	                </a>
 	                <a href="application.do?action=delete_pedido&id=<%= pedido.getIdPedido() %>">	
-	                	<button class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-red-300">Excluir</button>
+	                	<button class="bg-red-600 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-red-300">Excluir</button>
 	                </a>
 	            </div>
 	        </div>
     	</div>
     	
     	<%   } %>
+    	<% } else { %>
+    	
+    	<div class="self-center w-2/3 mt-8">
+			<h1 class="font-bold text-4xl text-center text-white mt-10 leading-relaxed">Nenhum produto encontrado.</h1>
+		</div>
+    	
     	<% } %>
     	
 	</div>

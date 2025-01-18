@@ -50,6 +50,8 @@
 				<input class="px-3 py-4 bg-transparent outline-none w-full" type="text" name="cliente" placeholder="Nome do cliente" required/>
 			</div>
 			
+			<input type="text" hidden="hidden" name="email" value="<%= user.getEmail() %>"/>
+			
 			<div class="flex items-center self-center w-full gap-5 justify-around">
 		        <a href="application.do?action=page_pedidos" class="bg-blue-700 w-1/2 py-4 text-lg text-center font-bold text-white rounded-lg hover:bg-blue-600 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white-300">
 		            Voltar
