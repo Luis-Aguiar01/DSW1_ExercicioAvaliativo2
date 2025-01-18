@@ -21,13 +21,9 @@
 			if (error) {
 		%>
 			<div class="self-center justify-self-start mb-5 text-red-700 text-xl">
-					Register failed.
+					Login failed.
 			</div>
-		<%  } else { %>
-			<div class="self-center justify-self-start mb-5 text-green-700 text-xl">
-					Register success.
-			</div>
-		<%  }  %>
+		<%  } %>
 		<% } %>
 		
 		<form action="application.do?action=login" method="POST" class="flex flex-col">
@@ -41,16 +37,14 @@
 				<input class="px-3 py-4 bg-transparent outline-none text-base w-full" type="password" name="password" placeholder="Password" required/>
 			</div>
 			
-			<p class="self-center mb-4">Don't have an account? 
-				<a href="application.do?action=register_page" class="text-blue-400 font-bold cursor-pointer hover:underline">
-					Click here to create account.
-				</a>
-			</p>
-			
-			<input class="text-lg mt-2 bg-black py-3 self-center w-1/3 rounded-lg text-white hover:bg-gray-900 cursor-pointer font-bold" type="submit" value="Enviar">
+			<div class="flex items-center self-center w-full gap-5 justify-around">
+		        <a href="application.do?action=home_page" class="bg-blue-700 w-1/2 py-4 text-md text-center font-bold text-white rounded-lg hover:bg-blue-600 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white-300">
+		            Voltar
+		        </a>
+		
+		        <input class="text-md bg-black py-4 px-6 w-1/2 rounded-lg text-white hover:bg-gray-900 cursor-pointer font-bold focus:outline-none focus:ring-2 focus:ring-gray-500" type="submit" value="Enviar">
+    		</div>
 		</form>
 	</div>
-	
-	<a href="application.do?action=home_page" class="bg-blue-700 w-1/7 py-4 px-6 mt-4 text-center font-bold text-white rounded-lg hover:bg-blue-600 cursor-pointer"><button>Home</button></a>
 </body>
 </html>

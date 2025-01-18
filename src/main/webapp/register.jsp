@@ -13,7 +13,7 @@
 <body class="flex flex-col justify-center items-center min-h-screen font-mono bg-gradient-to-r from-black to-gray-800">
 	
 	<div class="flex flex-col py-6 px-7 w-1/2 bg-white">
-		<h1 class="self-center font-bold text-3xl mb-10">Sign In</h1>
+		<h1 class="self-center font-bold text-3xl mb-10">Register page</h1>
 		
 		<% if (message != null) {
 			var error = Boolean.parseBoolean(message); 
@@ -43,17 +43,15 @@
 				<input class="px-3 py-4 bg-transparent outline-none text-base w-full" type="password" name="password" placeholder="Password" required/>
 			</div>
 			
-			<p class="self-center mb-4">Already have an account? 
-				<a href="application.do?action=login_page" class="text-blue-400 font-bold cursor-pointer hover:underline">
-					Click here to log in.
-				</a>
-			</p>
-			
-			<input class="text-lg mt-2 bg-black py-3 self-center w-1/3 rounded-lg text-white hover:bg-gray-900 cursor-pointer font-bold" type="submit" value="Enviar">
+			<div class="flex items-center self-center w-full gap-5 justify-around">
+		        <a href="application.do?action=home_page" class="bg-blue-700 w-1/2 py-4 text-md text-center font-bold text-white rounded-lg hover:bg-blue-600 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white-300">
+		            Voltar
+		        </a>
+		
+		        <input class="text-md bg-black py-4 px-6 w-1/2 rounded-lg text-white hover:bg-gray-900 cursor-pointer font-bold focus:outline-none focus:ring-2 focus:ring-gray-500" type="submit" value="Enviar">
+    		</div>
 		</form>
 	</div>
-	
-	<a href="application.do?action=home_page" class="bg-blue-700 w-1/7 py-4 px-6 mt-4 text-center font-bold text-white rounded-lg hover:bg-blue-600 cursor-pointer"><button>Home</button></a>
 	
 </body>
 </html>
