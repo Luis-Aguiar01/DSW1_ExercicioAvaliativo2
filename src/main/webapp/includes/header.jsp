@@ -1,6 +1,6 @@
 <%@page import="br.edu.ifsp.dsw.model.entity.Usuario"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 <% var isLogged = (Usuario) session.getAttribute("user"); %>
 
@@ -26,7 +26,7 @@
 		
 		<a href="application.do?action=home_page_relatorios" class="flex items-center gap-2 border-b-2 border-transparent hover:border-white pb-1 text-lg font-bold">
 			<span class="material-icons text-4xl">description</span>
-			<span>Relatórios</span>
+			<span>RelatÃ³rios</span>
 		</a>
 		
 		<a href="application.do?action=logout" class="bg-red-700 py-4 px-4 hover:bg-red-500 font-bold rounded-lg">

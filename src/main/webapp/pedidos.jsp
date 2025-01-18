@@ -1,7 +1,7 @@
 <%@page import="br.edu.ifsp.dsw.model.entity.Pedido"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     
 <% 
 	var pedidos = (List<Pedido>) request.getAttribute("pedidos"); 
@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -38,7 +38,7 @@
 	            </p>
 	
 	            <p class="mt-4 text-[#0070FF] text-sm font-bold">
-	            	Endereço de Entrega: <span class="text-white"><%= pedido.getEnderecoEntrega() %></span>
+	            	EndereÃ§o de Entrega: <span class="text-white"><%= pedido.getEnderecoEntrega() %></span>
 	            </p>
 	
 	            <p class="mt-4 text-[#0070FF] text-sm font-bold">
@@ -46,11 +46,11 @@
 	            </p>
 	
 	            <p class="mt-4 text-[#0070FF] text-sm font-bold">
-	            	E-mail do Usuário: <span class="text-white"><%= pedido.getUsuario().getEmail() %></span>
+	            	E-mail do UsuÃ¡rio: <span class="text-white"><%= pedido.getUsuario().getEmail() %></span>
 	            </p>
 	
 	            <div class="mt-4 flex items-center justify-center gap-2">
-	                <a href="application.do?action=update_pedido_page&id=<%= pedido.getIdPedido() %>">
+	                <a href="application.do?action=update_pedidos_page&id=<%= pedido.getIdPedido() %>">
 	                	<button class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300">Editar</button>
 	                </a>
 	                <a href="application.do?action=delete_pedido&id=<%= pedido.getIdPedido() %>">	

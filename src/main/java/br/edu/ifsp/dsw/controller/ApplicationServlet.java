@@ -40,7 +40,11 @@ public class ApplicationServlet extends HttpServlet {
 			command = new HomePageCommand();
 		} else if ("page_pedidos".equals(action)) {
 			command = new HomePagePedidosCommand();
-		} 
+		} else if ("update_pedidos_page".equals(action)) {
+			command = new UpdatePedidoPageCommand();
+		} else if ("update_pedido".equals(action)) {
+			command = new UpdatePedidoCommand();
+		}
 		
 		var view = command.execute(request, response);
 		var dispatcher = request.getRequestDispatcher(view);

@@ -14,7 +14,7 @@ class PedidoDaoImp implements PedidoDao {
 	private static final String UPDATE_PEDIDO_SQL =  "UPDATE pedido SET endereco_entrega = ?, valor = ?, descricao = ? WHERE id_pedido = ?";
 	private static final String GET_ALL_PEDIDO_SQL = "SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario FROM pedido";
 	private static final String GET_ALL_PEDIDO_BY_EMAIL = "SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario FROM pedido WHERE email_usuario = ?";
-	private static final String FIND_PEDIDO_BY_ID = "SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario FROM pedido WHERE id = ?";
+	private static final String FIND_PEDIDO_BY_ID = "SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario FROM pedido WHERE id_pedido = ?";
 	
 	private UsuarioDao usuarioDao;
 	
@@ -156,9 +156,9 @@ var pedidos = new ArrayList<Pedido>();
 				pedido.setDescricao(rs.getString("descricao"));
 				pedido.setEnderecoEntrega(rs.getString("endereco_entrega"));
 				pedido.setIdPedido(rs.getInt("id_pedido"));
-				pedido.setPrice(rs.getDouble("price"));
+				pedido.setPrice(rs.getDouble("valor"));
 				
-				var user = usuarioDao.findByEmail(rs.getString("email"));
+				var user = usuarioDao.findByEmail(rs.getString("email_usuario"));
 				pedido.setUsuario(user);
 			}
 		}
