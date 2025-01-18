@@ -39,18 +39,26 @@
 			</div>
 			
 			<div class="flex items-center border rounded-lg mb-7 bg-gray-200 px-3">
-				<input class="px-3 py-4 bg-transparent outline-none w-full" type="text" name="address" placeholder="Endereço de Entrega" required/>
+				<input class="px-3 py-4 bg-transparent outline-none w-full" type="text" name="address" placeholder="Endereço de entrega" required/>
 			</div>
 		
 			<div class="flex items-center border rounded-lg mb-7 bg-gray-200 px-3">
 				<input class="px-3 py-4 bg-transparent outline-none w-full" type="number" name="price" placeholder="Valor" required/>
 			</div>
 			
-			<input class="px-3 py-4 bg-transparent outline-none text-base w-full" hidden="hidden" type="text" name="email" value="<%= user.getEmail() %>"/>
-	
-			<input class="text-lg mt-2 bg-black py-3 self-center w-1/3 rounded-lg text-white hover:bg-gray-900 cursor-pointer font-bold" type="submit" value="Enviar">
+			<div class="flex items-center border rounded-lg mb-7 bg-gray-200 px-3">
+				<input class="px-3 py-4 bg-transparent outline-none w-full" type="text" name="cliente" placeholder="Nome do cliente" required/>
+			</div>
+			
+			<div class="flex items-center self-center w-full gap-5 justify-around">
+		        <a href="application.do?action=page_pedidos" class="bg-blue-700 w-1/2 py-4 text-lg text-center font-bold text-white rounded-lg hover:bg-blue-600 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white-300">
+		            Voltar
+		        </a>
+		
+		        <input class="text-lg bg-black py-4 px-6 w-1/2 rounded-lg text-white hover:bg-gray-900 cursor-pointer font-bold focus:outline-none focus:ring-2 focus:ring-gray-500" type="submit" value="Enviar">
+    		</div>
+			
 		</form>
 	</div>
-	<a href="application.do?action=home_page" class="bg-blue-700 w-1/7 py-4 px-6 mt-4 text-center font-bold text-white rounded-lg hover:bg-blue-600 cursor-pointer"><button>Home</button></a>
 </body>
 </html>

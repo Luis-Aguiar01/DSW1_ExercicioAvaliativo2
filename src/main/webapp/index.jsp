@@ -25,7 +25,12 @@
 		<h1 class="font-bold text-4xl text-center text-white mt-10 leading-relaxed">Welcome to your page, <%= user.getNome() %> <span> &#128075;</span></h1>
 	</div>	
 	
-	<% } %>
+	<% } else { %>
 	
+	<div class="self-center w-2/3 mt-8">
+		<h1 class="font-bold text-4xl text-center text-white mt-10 leading-relaxed">Welcome to the home page<span> &#128075;</span></h1>
+	</div>
+	
+	<% } %>
 </body>
 </html>
