@@ -29,7 +29,7 @@
 		<%  }  %>
 		<% } %>
 			
-		<form action="application.do?action=register" method="POST" class="flex flex-col">
+		<form action="logged.do?action=register" method="POST" class="flex flex-col">
 			
 			<div class="flex items-center border rounded-lg mb-7 bg-gray-200 px-3">
 				<input class="px-3 py-4 bg-transparent outline-none w-full" type="text" name="name" placeholder="Name" required/>
@@ -44,7 +44,7 @@
 			</div>
 			
 			<div class="flex items-center self-center w-full gap-5 justify-around">
-		        <a href="application.do?action=home_page" class="bg-blue-700 w-1/2 py-4 text-md text-center font-bold text-white rounded-lg hover:bg-blue-600 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white-300">
+		        <a href="logged.do?action=home_page" class="bg-blue-700 w-1/2 py-4 text-md text-center font-bold text-white rounded-lg hover:bg-blue-600 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white-300">
 		            Voltar
 		        </a>
 		

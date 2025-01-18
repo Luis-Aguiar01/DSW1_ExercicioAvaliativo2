@@ -26,7 +26,7 @@
 		<%  } %>
 		<% } %>
 		
-		<form action="application.do?action=login" method="POST" class="flex flex-col">
+		<form action="disconnected.do?action=login" method="POST" class="flex flex-col">
 			<div class="flex items-center border rounded-lg mb-7 bg-gray-200 px-3">
 				<span class="material-icons text-gray-500">person</span>
 				<input class="px-3 py-4 bg-transparent outline-none w-full" type="text" name="email" placeholder="Email" required/>
@@ -38,7 +38,7 @@
 			</div>
 			
 			<div class="flex items-center self-center w-full gap-5 justify-around">
-		        <a href="application.do?action=home_page" class="bg-blue-700 w-1/2 py-4 text-md text-center font-bold text-white rounded-lg hover:bg-blue-600 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white-300">
+		        <a href="disconnected.do?action=home_page" class="bg-blue-700 w-1/2 py-4 text-md text-center font-bold text-white rounded-lg hover:bg-blue-600 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white-300">
 		            Voltar
 		        </a>
 		

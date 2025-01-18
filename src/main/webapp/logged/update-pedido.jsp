@@ -32,7 +32,7 @@
 		<%  }  %>
 		<% } %>
 			
-		<form action="application.do?action=update_pedido" method="POST" class="flex flex-col">
+		<form action="logged.do?action=update_pedido" method="POST" class="flex flex-col">
 			<div class="flex items-center border rounded-lg mb-7 bg-gray-200 px-3">
 				<input class="px-3 py-4 bg-transparent outline-none text-base w-full" type="text" name="descricao" value="<%= pedido.getDescricao() %>" placeholder="Descricao" required/>
 			</div>
@@ -54,7 +54,7 @@
 			<input class="px-3 py-4 bg-transparent outline-none text-base w-full" hidden="hidden" type="number" name="id" value="<%= pedido.getIdPedido() %>"/>
 			
 			<div class="flex items-center self-center w-full gap-5 justify-around">
-		        <a href="application.do?action=page_pedidos" class="bg-blue-700 w-1/2 py-4 text-lg text-center font-bold text-white rounded-lg hover:bg-blue-600 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white-300">
+		        <a href="logged.do?action=page_pedidos" class="bg-blue-700 w-1/2 py-4 text-lg text-center font-bold text-white rounded-lg hover:bg-blue-600 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white-300">
 		            Voltar
 		        </a>
 		
