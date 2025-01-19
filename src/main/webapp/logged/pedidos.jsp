@@ -20,14 +20,14 @@
 	<jsp:include page="../includes/header.jsp" />
 	
 	<a href="logged.do?action=register_pedido_page" class="self-end mt-5 mr-20">	
-		<button class="bg-green-600 hover:bg-green-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-white">Adicionar</button>
+		<button class="bg-green-600 hover:bg-green-500 text-white font-semibold py-3 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-white">Adicionar</button>
 	</a>
 	
 	<div class="flex self-center flex-wrap items-center justify-center gap-5 mt-5">
 		<% if (pedidos != null && !pedidos.isEmpty()) { %>
 	   	<%   for (var pedido : pedidos) { %>
 	   	
-    	<div class="border-2 border-gray-200 rounded-lg shadow-md overflow-hidden bg-[#2A3439] w-80 h-auto">
+    	<div class="border-2 border-gray-200 rounded-lg shadow-md overflow-hidden bg-[#2A3439] w-80 h-80">
 	        <div class="p-6">
 	            <h3 class="mt-4 text-[#0070FF] text-sm font-bold">
 	            	Produto: <span class="text-white"><%= pedido.getDescricao() %></span>
@@ -43,6 +43,10 @@
 	
 	            <p class="mt-4 text-[#0070FF] text-sm font-bold">
 	            	Valor: <span class="text-white">R$ <%= pedido.getPrice() %></span>
+	            </p>
+	            
+	            <p class="mt-4 text-[#0070FF] text-sm font-bold">
+	            	Cadastrado por: <span class="text-white"> <%= pedido.getUsuario().getNome() %> </span>
 	            </p>
 	
 	            <div class="mt-4 flex items-center justify-center gap-2">

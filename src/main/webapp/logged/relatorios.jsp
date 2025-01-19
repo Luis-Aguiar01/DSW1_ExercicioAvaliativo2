@@ -31,11 +31,11 @@
 		</div>
 	</form>
 	
-	<div class="flex self-center flex-wrap items-center justify-center gap-5 mt-5">
+	<div class="flex self-center flex-wrap items-center justify-center gap-5 mt-10">
 		<% if (pedidos != null && !pedidos.isEmpty()) { %>
 	   	<%   for (var pedido : pedidos) { %>
 	   	
-    	<div class="border-2 border-gray-200 rounded-lg shadow-md overflow-hidden bg-[#2A3439] w-80 h-auto">
+    	<div class="border-2 border-gray-200 rounded-lg shadow-md overflow-hidden bg-[#2A3439] w-80 h-80">
 	        <div class="p-6">
 	            <h3 class="mt-4 text-[#0070FF] text-sm font-bold">
 	            	Produto: <span class="text-white"><%= pedido.getDescricao() %></span>
@@ -51,6 +51,10 @@
 	
 	            <p class="mt-4 text-[#0070FF] text-sm font-bold">
 	            	Valor: <span class="text-white">R$ <%= pedido.getPrice() %></span>
+	            </p>
+	            
+	            <p class="mt-4 text-[#0070FF] text-sm font-bold">
+	            	Cadastrado por: <span class="text-white"> <%= pedido.getUsuario().getNome() %> </span>
 	            </p>
 	
 	            <div class="mt-4 flex items-center justify-center gap-2">
