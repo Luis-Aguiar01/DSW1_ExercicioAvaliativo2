@@ -23,11 +23,11 @@
 			if (error) {
 		%>
 			<div class="self-center justify-self-start mb-5 text-red-700 text-xl">
-					Register failed.
+					Update failed.
 			</div>
 		<%  } else { %>
 			<div class="self-center justify-self-start mb-5 text-green-700 text-xl">
-					Register success.
+					Update success.
 			</div>
 		<%  }  %>
 		<% } %>

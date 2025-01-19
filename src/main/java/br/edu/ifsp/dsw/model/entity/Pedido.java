@@ -71,4 +71,10 @@ public class Pedido {
 	public void setNomeCliente(String nomeCliente) {
 		this.nomeCliente = nomeCliente;
 	}
+
+	@Override
+	public String toString() {
+		return "Pedido [idPedido=" + idPedido + ", enderecoEntrega=" + enderecoEntrega + ", nomeCliente=" + nomeCliente
+				+ ", price=" + price + ", descricao=" + descricao + ", usuario=" + usuario + "]";
+	}
 }

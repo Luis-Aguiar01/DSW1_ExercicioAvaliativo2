@@ -5,6 +5,10 @@ import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
 
+// Explicação presente na classe "PedidoTableInitializeListener".
+// A única diferença, é que aqui eu criei o usuário administrador do sistema
+// assim que a aplicação é inicializada.
+
 @WebListener
 public class UserTableInitializeListener implements ServletContextListener {
 

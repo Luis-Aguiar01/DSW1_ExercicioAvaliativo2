@@ -7,14 +7,13 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class UpdatePedidoPageCommand implements Command {
+public class OrderRegistrationPageCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		var id = Integer.parseInt(request.getParameter("id"));
 		var pedidoDao = new PedidoDaoFactory().factory();
-		var pedido = pedidoDao.findById(id);
-		request.setAttribute("pedido", pedido);
-		return "/logged/update-pedido.jsp";
+		var pedidos = pedidoDao.getAll();
+		request.setAttribute("pedidos", pedidos);
+		return "/logged/register-pedido.jsp";
 	}
 }

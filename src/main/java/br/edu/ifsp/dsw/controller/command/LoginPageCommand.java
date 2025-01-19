@@ -9,8 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class LoginPageCommand implements Command {
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		return "login.jsp";
 	}
 }

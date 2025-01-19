@@ -39,4 +39,9 @@ public class Usuario {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [email=" + email + ", nome=" + nome + ", password=" + password + "]";
+	}
 }

@@ -5,6 +5,11 @@ import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
 
+// Esse listener serve para executar um código sempre que a aplicação é inicializada ou finalizada.
+// No caso, usei o método "contextInitialized" para criar a tabela assim que a aplicação se inicia.
+// Não pude usar o auto_increment por conta das diferenças de fazer isso entre o MySQL e o Postgres.
+// Também não encontrei uma forma prática de criar o schema do banco de dados, então ainda é preciso criá-lo.
+
 @WebListener
 public class PedidoTableInitializeListener implements ServletContextListener {
 	
@@ -25,8 +30,8 @@ public class PedidoTableInitializeListener implements ServletContextListener {
 	}
 	
 	private static void initializePedidosTable() { 
-		try (var conn = new DatabaseConnectionFactory().factory()) {
-			var ps = conn.prepareStatement(CREATE_TABLE_PEDIDO);
+		try (var conn = new DatabaseConnectionFactory().factory();
+			 var ps = conn.prepareStatement(CREATE_TABLE_PEDIDO)) {
 			ps.execute();
 		}
 		catch (Exception e) {

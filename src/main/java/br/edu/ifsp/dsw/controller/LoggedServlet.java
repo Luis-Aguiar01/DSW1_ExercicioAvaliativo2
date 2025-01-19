@@ -16,27 +16,27 @@ public class LoggedServlet extends HttpServlet {
 		Command command = null;
 		
 		if ("register".equals(action)) {
-			command = new RegisterCommand();
+			command = new RegisterUserCommand();
 		} else if ("logout".equals(action)) {
 			command = new LogoutCommand();
 		} else if ("register_users_page".equals(action)) {
-			command = new RegisterUsersPageCommand();
+			command = new UserRegistrationPageCommand();
 		} else if ("register_pedido_page".equals(action)) {
-			command = new RegisterPedidoPageCommand();
+			command = new OrderRegistrationPageCommand();
 		} else if ("register_pedido".equals(action)) {
-			command = new RegisterPedidoCommand();
+			command = new RegisterOrderCommand();
 		} else if ("delete_pedido".equals(action)) {
-			command = new DeletePedidoCommand();
+			command = new DeleteOrderCommand();
 		} else if ("page_pedidos".equals(action)) {
-			command = new HomePagePedidosCommand();
+			command = new OrderPageCommand();
 		} else if ("update_pedidos_page".equals(action)) {
-			command = new UpdatePedidoPageCommand();
+			command = new OrderUpdatePageCommand();
 		} else if ("update_pedido".equals(action)) {
-			command = new UpdatePedidoCommand();
+			command = new UpdateOrderCommand();
 		} else if ("search_pedidos_usuario".equals(action)) {
-			command = new SearchPedidosUsuarioCommand();
+			command = new SearchOrdersByCustomerCommand();
 		} else if ("page_relatorios".equals(action)) {
-			command = new RelatoriosPageCommand();
+			command = new ReportRegistrationPageCommand();
 		} else {
 			command = new ErrorCommand();
 		}

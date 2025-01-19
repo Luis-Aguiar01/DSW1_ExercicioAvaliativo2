@@ -14,8 +14,8 @@ class UsuarioDaoImp implements UsuarioDao {
 		int result = 0;
 		
 		if (usuario != null) {
-			try (var conn = new DatabaseConnectionFactory().factory()) {
-				var ps = conn.prepareStatement(CREATE_USER_SQL);
+			try (var conn = new DatabaseConnectionFactory().factory();
+				 var ps = conn.prepareStatement(CREATE_USER_SQL)) {
 				ps.setString(1, usuario.getEmail());
 				ps.setString(2, usuario.getNome());
 				ps.setString(3, usuario.getPassword());
@@ -35,10 +35,10 @@ class UsuarioDaoImp implements UsuarioDao {
 		Usuario usuario = null;
 		
 		if (email != null) {
-			try (var conn = new DatabaseConnectionFactory().factory()) {
-				var ps = conn.prepareStatement(FIND_USER_BY_EMAIL_SQL);
-				ps.setString(1, email);
+			try (var conn = new DatabaseConnectionFactory().factory();
+				 var ps = conn.prepareStatement(FIND_USER_BY_EMAIL_SQL)) {
 				
+				ps.setString(1, email);
 				var rs = ps.executeQuery();
 				
 				if (rs.next()) {

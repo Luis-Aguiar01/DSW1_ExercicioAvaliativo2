@@ -9,23 +9,14 @@ import br.edu.ifsp.dsw.model.entity.Pedido;
 
 class PedidoDaoImp implements PedidoDao {
 	
-	private static final String CREATE_SQL = 
-			"INSERT INTO pedido (id_pedido, endereco_entrega, valor, descricao, email_usuario, nome_cliente) VALUES (?, ?, ?, ?, ?, ?)";
-	
+	private static final String CREATE_SQL = "INSERT INTO pedido (id_pedido, endereco_entrega, valor, descricao, email_usuario, nome_cliente) VALUES (?, ?, ?, ?, ?, ?)";
 	private static final String DELETE_SQL = "DELETE FROM pedido WHERE id_pedido = ?";
+	private static final String UPDATE_SQL = "UPDATE pedido SET endereco_entrega = ?, valor = ?, descricao = ?, nome_cliente = ? WHERE id_pedido = ?";
+	private static final String GET_ALL_SQL = "SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario, nome_cliente FROM pedido";
+	private static final String GET_ALL_BY_NAME = "SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario, nome_cliente FROM pedido WHERE LOWER(nome_cliente) LIKE ?";
+	private static final String FIND_BY_ID = "SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario, nome_cliente FROM pedido WHERE id_pedido = ?";
 	
-	private static final String UPDATE_SQL =  
-			"UPDATE pedido SET endereco_entrega = ?, valor = ?, descricao = ?, nome_cliente = ? WHERE id_pedido = ?";
-	
-	private static final String GET_ALL_SQL = 
-			"SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario, nome_cliente FROM pedido";
-	
-	private static final String GET_ALL_BY_NAME = 
-			"SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario, nome_cliente FROM pedido WHERE LOWER(nome_cliente) LIKE ?";
-	
-	private static final String FIND_BY_ID = 
-			"SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario, nome_cliente FROM pedido WHERE id_pedido = ?";
-	
+	// Precisei criar o ID em um campo estático, porque que o Postgres não tem o auto_increment do MySQL
 	private static long nextId = 1;
 	
 	private UsuarioDao usuarioDao;
@@ -39,8 +30,8 @@ class PedidoDaoImp implements PedidoDao {
 		int result = 0;
 		
 		if (pedido != null) {
-			try (var conn = new DatabaseConnectionFactory().factory()) {
-				var ps = conn.prepareStatement(CREATE_SQL);
+			try (var conn = new DatabaseConnectionFactory().factory();
+				 var ps = conn.prepareStatement(CREATE_SQL)) {
 				ps.setLong(1, nextId);
 				ps.setString(2, pedido.getEnderecoEntrega());
 				ps.setDouble(3, pedido.getPrice());
@@ -63,10 +54,9 @@ class PedidoDaoImp implements PedidoDao {
 	public boolean delete(int idPedido) {
 		int result = 0;
 		
-		try (var conn = new DatabaseConnectionFactory().factory()) {
-			var ps = conn.prepareStatement(DELETE_SQL);
+		try (var conn = new DatabaseConnectionFactory().factory();
+		     var ps = conn.prepareStatement(DELETE_SQL)) {
 			ps.setInt(1, idPedido);
-			
 			result = ps.executeUpdate();
 		}
 		catch (Exception e) {
@@ -81,8 +71,8 @@ class PedidoDaoImp implements PedidoDao {
 		int result = 0;
 		
 		if (newPedidoData != null) {
-			try (var conn = new DatabaseConnectionFactory().factory()) {
-				var ps = conn.prepareStatement(UPDATE_SQL);
+			try (var conn = new DatabaseConnectionFactory().factory();
+				 var ps = conn.prepareStatement(UPDATE_SQL)) {
 				ps.setString(1, newPedidoData.getEnderecoEntrega());
 				ps.setDouble(2, newPedidoData.getPrice());
 				ps.setString(3, newPedidoData.getDescricao());
@@ -104,10 +94,10 @@ class PedidoDaoImp implements PedidoDao {
 	public List<Pedido> getAll() {
 		var pedidos = new ArrayList<Pedido>();
 		
-		try (var conn = new DatabaseConnectionFactory().factory()) {
-			var ps = conn.prepareStatement(GET_ALL_SQL);
-			var rs = ps.executeQuery();
+		try (var conn = new DatabaseConnectionFactory().factory();
+			 var ps = conn.prepareStatement(GET_ALL_SQL)) {
 			
+			var rs = ps.executeQuery();
 			while (rs.next()) {
 				var pedido = new Pedido();
 				pedido.setDescricao(rs.getString("descricao"));
@@ -133,11 +123,11 @@ class PedidoDaoImp implements PedidoDao {
 	public List<Pedido> getAllByName(String name) {
 		var pedidos = new ArrayList<Pedido>();
 		
-		try (var conn = new DatabaseConnectionFactory().factory()) {
-			var ps = conn.prepareStatement(GET_ALL_BY_NAME);
+		try (var conn = new DatabaseConnectionFactory().factory();
+			 var ps = conn.prepareStatement(GET_ALL_BY_NAME)) {
+			
 			ps.setString(1, "%" + name.toLowerCase() + "%");
 			var rs = ps.executeQuery();
-			
 			while (rs.next()) {
 				var pedido = new Pedido();
 				pedido.setDescricao(rs.getString("descricao"));
@@ -163,10 +153,10 @@ class PedidoDaoImp implements PedidoDao {
 	public Pedido findById(int id) {
 		Pedido pedido = null;
 		
-		try (var conn = new DatabaseConnectionFactory().factory()) {
-			var ps = conn.prepareStatement(FIND_BY_ID);
-			ps.setInt(1, id);
+		try (var conn = new DatabaseConnectionFactory().factory();
+			 var ps = conn.prepareStatement(FIND_BY_ID)) {
 			
+			ps.setInt(1, id);
 			var rs = ps.executeQuery();
 			
 			if (rs.next()) {
