@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Register Page</title>
+<title>Register Order Page</title>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="flex flex-col justify-center items-center min-h-screen font-mono bg-gradient-to-r from-black to-gray-800">

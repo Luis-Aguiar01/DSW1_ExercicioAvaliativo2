@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Orders Page</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -27,7 +27,7 @@
 		<% if (pedidos != null && !pedidos.isEmpty()) { %>
 	   	<%   for (var pedido : pedidos) { %>
 	   	
-    	<div class="border-2 border-gray-200 rounded-lg shadow-md overflow-hidden bg-[#2A3439]">
+    	<div class="border-2 border-gray-200 rounded-lg shadow-md overflow-hidden bg-[#2A3439] w-80 h-auto">
 	        <div class="p-6">
 	            <h3 class="mt-4 text-[#0070FF] text-sm font-bold">
 	            	Produto: <span class="text-white"><%= pedido.getDescricao() %></span>
@@ -46,7 +46,7 @@
 	            </p>
 	
 	            <div class="mt-4 flex items-center justify-center gap-2">
-	                <a href="application.do?action=update_pedidos_page&id=<%= pedido.getIdPedido() %>">
+	                <a href="logged.do?action=update_pedidos_page&id=<%= pedido.getIdPedido() %>">
 	                	<button class="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300">Editar</button>
 	                </a>
 	                <a href="logged.do?action=delete_pedido&id=<%= pedido.getIdPedido() %>">	

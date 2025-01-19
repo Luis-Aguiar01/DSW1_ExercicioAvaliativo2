@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Report Page</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
@@ -19,8 +19,11 @@
 	
 	<jsp:include page="../includes/header.jsp" />
 		
-	<form action="logged.do?action=search_pedidos_usuario" method="POST" class="self-end mt-5 mr-10 w-1/5">
-		<div class="flex items-center border rounded-lg bg-gray-200 p-3">
+	<form action="logged.do?action=search_pedidos_usuario" method="POST" class="flex gap-5 self-end mt-5 mr-10 w-1/4">
+		<a href="logged.do?action=page_relatorios" class="bg-green-600 w-1/4 py-4 text-md text-center font-bold text-white rounded-lg hover:bg-green-700 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white-300">
+			Todos
+		</a>
+		<div class="flex items-center border rounded-lg bg-gray-200 p-3 w-2/3">
 			<input class="bg-transparent outline-none text-base w-full" type="text" name="name" placeholder="Pesquisar" required/>
 			<button type="submit" class="flex items-center font-bold text-gray-600">
     			<span class="material-symbols-outlined mr-2">search</span>
@@ -32,7 +35,7 @@
 		<% if (pedidos != null && !pedidos.isEmpty()) { %>
 	   	<%   for (var pedido : pedidos) { %>
 	   	
-    	<div class="border-2 border-gray-200 rounded-lg shadow-md overflow-hidden bg-[#2A3439]">
+    	<div class="border-2 border-gray-200 rounded-lg shadow-md overflow-hidden bg-[#2A3439] w-80 h-auto">
 	        <div class="p-6">
 	            <h3 class="mt-4 text-[#0070FF] text-sm font-bold">
 	            	Produto: <span class="text-white"><%= pedido.getDescricao() %></span>
