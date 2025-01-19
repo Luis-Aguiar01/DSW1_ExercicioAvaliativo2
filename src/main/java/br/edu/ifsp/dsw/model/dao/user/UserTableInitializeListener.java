@@ -21,10 +21,6 @@ public class UserTableInitializeListener implements ServletContextListener {
 	
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
-		initializeUsuariosTable();
-	}
-	
-	private static void initializeUsuariosTable() {
 		try (var conn = new DatabaseConnectionFactory().factory()) {
 			var ps = conn.prepareStatement(USER_TABLE);
 			ps.execute();
@@ -45,4 +41,5 @@ public class UserTableInitializeListener implements ServletContextListener {
 			e.printStackTrace();
 		}
 	}
+
 }

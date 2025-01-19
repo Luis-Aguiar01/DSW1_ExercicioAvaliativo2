@@ -9,6 +9,9 @@ import jakarta.servlet.annotation.WebListener;
 // No caso, usei o método "contextInitialized" para criar a tabela assim que a aplicação se inicia.
 // Não pude usar o auto_increment por conta das diferenças de fazer isso entre o MySQL e o Postgres.
 // Também não encontrei uma forma prática de criar o schema do banco de dados, então ainda é preciso criá-lo.
+// Além disso, tentei usar uma anotação chamada Priority, para definir que o litener da tabela de usuário fosse
+// executado primeiro que o listener da tabela de pedidos, porém, não funcionou, então tive que configurar a
+// ordem no XML.
 
 @WebListener
 public class PedidoTableInitializeListener implements ServletContextListener {
@@ -26,16 +29,12 @@ public class PedidoTableInitializeListener implements ServletContextListener {
 	
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
-		initializePedidosTable();
-	}
-	
-	private static void initializePedidosTable() { 
 		try (var conn = new DatabaseConnectionFactory().factory();
-			 var ps = conn.prepareStatement(CREATE_TABLE_PEDIDO)) {
-			ps.execute();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+				 var ps = conn.prepareStatement(CREATE_TABLE_PEDIDO)) {
+				ps.execute();
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
 	}
 }

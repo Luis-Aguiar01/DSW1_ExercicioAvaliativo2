@@ -23,33 +23,39 @@
 		<button class="bg-green-600 hover:bg-green-500 text-white font-semibold py-3 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-white">Adicionar</button>
 	</a>
 	
-	<div class="flex self-center flex-wrap items-center justify-center gap-5 mt-5">
+	<div class="flex self-center flex-wrap items-center justify-center gap-5 mt-7">
 		<% if (pedidos != null && !pedidos.isEmpty()) { %>
 	   	<%   for (var pedido : pedidos) { %>
-	   	
-    	<div class="border-2 border-gray-200 rounded-lg shadow-md overflow-hidden bg-[#2A3439] w-80 h-80">
-	        <div class="p-6">
-	            <h3 class="mt-4 text-[#0070FF] text-sm font-bold">
-	            	Produto: <span class="text-white"><%= pedido.getDescricao() %></span>
-	            </h3>
+		   	
+	    	<div class="border-2 border-gray-200 rounded-lg shadow-lg overflow-hidden bg-gradient-to-b from-gray-800 to-gray-900 w-90 h-80 transition-transform transform hover:scale-105">
 	
-	            <p class="mt-4 text-[#0070FF] text-sm font-bold">
-	            	Nome do Cliente: <span class="text-white"><%= pedido.getNomeCliente() %></span>
-	            </p>
-	
-	            <p class="mt-4 text-[#0070FF] text-sm font-bold">
-	            	Endereço de Entrega: <span class="text-white"><%= pedido.getEnderecoEntrega() %></span>
-	            </p>
-	
-	            <p class="mt-4 text-[#0070FF] text-sm font-bold">
-	            	Valor: <span class="text-white">R$ <%= pedido.getPrice() %></span>
-	            </p>
-	            
-	            <p class="mt-4 text-[#0070FF] text-sm font-bold">
-	            	Cadastrado por: <span class="text-white"> <%= pedido.getUsuario().getNome() %> </span>
-	            </p>
-	
-	            <div class="mt-4 flex items-center justify-center gap-2">
+		    <div class="bg-[#0070FF] text-white text-center py-2">
+		        <h2 class="font-bold text-lg">Detalhes do Pedido</h2>
+		    </div>
+
+
+		    <div class="p-6">
+		        <h3 class="mt-4 text-gray-300 text-sm font-bold">
+		            Produto: <span class="text-white"><%= pedido.getDescricao() %></span>
+		        </h3>
+		
+		        <p class="mt-4 text-gray-300 text-sm font-bold">
+		            Nome do Cliente: <span class="text-white"><%= pedido.getNomeCliente() %></span>
+		        </p>
+		
+		        <p class="mt-4 text-gray-300 text-sm font-bold">
+		            Endereço de Entrega: <span class="text-white"><%= pedido.getEnderecoEntrega() %></span>
+		        </p>
+		
+		        <p class="mt-4 text-gray-300 text-sm font-bold">
+		            Valor: <span class="text-green-400">R$ <%= pedido.getPrice() %></span>
+		        </p>
+		
+		        <p class="mt-4 text-gray-300 text-sm font-bold">
+		            Cadastrado por: <span class="text-white"> <%= pedido.getUsuario().getNome() %> </span>
+		        </p>
+		        
+		        <div class="mt-4 flex items-center justify-center gap-2">
 	                <a href="logged.do?action=update_pedidos_page&id=<%= pedido.getIdPedido() %>">
 	                	<button class="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300">Editar</button>
 	                </a>
@@ -57,7 +63,7 @@
 	                	<button class="bg-red-600 hover:bg-red-500 text-white font-semibold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-red-300">Excluir</button>
 	                </a>
 	            </div>
-	        </div>
+		    </div>
     	</div>
     	
     	<%   } %>
