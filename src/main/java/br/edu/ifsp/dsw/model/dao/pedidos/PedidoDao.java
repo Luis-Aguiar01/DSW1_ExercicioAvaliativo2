@@ -14,7 +14,7 @@ public interface PedidoDao {
 	
 	List<Pedido> getAll();
 	
-	List<Pedido> getAllByEmail(String email);
+	List<Pedido> getAllByName(String name);
 	
 	Pedido findById(int id);
 }

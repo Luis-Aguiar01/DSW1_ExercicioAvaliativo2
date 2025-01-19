@@ -1,7 +1,6 @@
 package br.edu.ifsp.dsw.model.entity;
 
 public class Usuario {
-	
 	private String email;
 	private String nome;
 	private String password;

@@ -14,6 +14,6 @@ public class HomePagePedidosCommand implements Command {
 		var pedidoDao = new PedidoDaoFactory().factory();
 		var pedidos = pedidoDao.getAll();
 		request.setAttribute("pedidos", pedidos);
-		return "pedidos.jsp";
+		return "/logged/pedidos.jsp";
 	}
 }

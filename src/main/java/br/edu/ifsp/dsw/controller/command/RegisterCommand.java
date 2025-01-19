@@ -20,11 +20,11 @@ public class RegisterCommand implements Command {
 		var findedUser = userDao.findByEmail(email);
 		
 		if (findedUser != null) {
-			return "register.jsp?error=true";
+			return "/logged/register.jsp?error=true";
 		}
 		
 		userDao.create(new Usuario(email, password, name));
 		
-		return "register.jsp?error=false";
+		return "/logged/register.jsp?error=false";
 	}
 }

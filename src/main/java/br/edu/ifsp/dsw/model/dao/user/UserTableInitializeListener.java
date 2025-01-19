@@ -6,10 +6,10 @@ import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
 
 @WebListener
-public class UserDatabaseInitialize implements ServletContextListener {
+public class UserTableInitializeListener implements ServletContextListener {
 
 	private static final String USER_TABLE = "CREATE TABLE IF NOT EXISTS usuario (\r\n"
-			+ "	email VARCHAR(50) PRIMARY KEY,\r\n"
+			+ "	   email VARCHAR(50) PRIMARY KEY,\r\n"
 			+ "    nome VARCHAR(100) NOT NULL,\r\n"
 			+ "    senha VARCHAR(45) NOT NULL\r\n"
 			+ ");\r\n"

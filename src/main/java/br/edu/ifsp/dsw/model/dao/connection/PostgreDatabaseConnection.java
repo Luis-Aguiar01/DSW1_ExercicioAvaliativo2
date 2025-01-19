@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class PostgreDatabaseConnection {
+class PostgreDatabaseConnection {
 	
 	private static final String URL = "jdbc:postgresql://localhost:5432/prova_dsw";
 	private static final String USER = System.getenv("DB_USER");

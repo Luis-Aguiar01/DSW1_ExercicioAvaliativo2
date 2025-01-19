@@ -16,17 +16,19 @@ public class UpdatePedidoCommand implements Command {
 		var price = Double.parseDouble(request.getParameter("price"));
 		var descricao = request.getParameter("descricao");
 		var id = Integer.parseInt(request.getParameter("id"));
+		var nomeCliente = request.getParameter("cliente");
 		
 		var newPedidoData = new Pedido();
 		newPedidoData.setDescricao(descricao);
 		newPedidoData.setEnderecoEntrega(address);
 		newPedidoData.setPrice(price);
+		newPedidoData.setNomeCliente(nomeCliente);
 		
 		var pedidoDao = new PedidoDaoFactory().factory();
 		pedidoDao.update(id, newPedidoData);
 		
 		var pedidos = pedidoDao.getAll();
 		request.setAttribute("pedidos", pedidos);
-		return "pedidos.jsp";
+		return "/logged/pedidos.jsp";
 	}
 }

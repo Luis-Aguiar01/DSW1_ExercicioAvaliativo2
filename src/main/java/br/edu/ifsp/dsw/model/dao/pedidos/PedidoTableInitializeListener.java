@@ -6,10 +6,11 @@ import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
 
 @WebListener
-public class PedidoDatabaseInitialize implements ServletContextListener {
+public class PedidoTableInitializeListener implements ServletContextListener {
 	
 	private static final String CREATE_TABLE_PEDIDO = "CREATE TABLE IF NOT EXISTS pedido (\r\n"
-			+ "	   id_pedido INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,\r\n"
+			+ "	   id_pedido INT PRIMARY KEY,\r\n"
+			+ "	   nome_cliente VARCHAR(100) NOT NULL,\r\n"
 			+ "    endereco_entrega VARCHAR(200) NOT NULL,\r\n"
 			+ "    valor DECIMAL(10, 2) NOT NULL,\r\n"
 			+ "    descricao VARCHAR(300),\r\n"

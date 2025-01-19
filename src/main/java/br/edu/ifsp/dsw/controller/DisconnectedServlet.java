@@ -7,43 +7,22 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
-@WebServlet("/application.do")
-public class ApplicationServlet extends HttpServlet {
+@WebServlet("/disconnected.do")
+public class DisconnectedServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		var action = request.getParameter("action");
 		Command command = null;
 		
 		if ("login_page".equals(action)) {
 			command = new LoginPageCommand();
-		} else if ("register_page".equals(action)) {
-			command = new RegisterPageCommand();
-		} else if ("register".equals(action)) {
-			command = new RegisterCommand();
-		} else if ("login".equals(action)) {
+		}  else if ("login".equals(action)) {
 			command = new LoginCommand();
-		} else if ("logout".equals(action)) {
-			command = new LogoutCommand();
-		} else if ("register_users".equals(action)) {
-			command = new RegisterCommand();
-		} else if ("register_users_page".equals(action)) {
-			command = new RegisterUsersPageCommand();
-		} else if ("register_pedido_page".equals(action)) {
-			command = new RegisterPedidoPageCommand();
-		} else if ("register_pedido".equals(action)) {
-			command = new RegisterPedidoCommand();
-		} else if ("delete_pedido".equals(action)) {
-			command = new DeletePedidoCommand();
 		} else if ("home_page".equals(action)) {
 			command = new HomePageCommand();
-		} else if ("page_pedidos".equals(action)) {
-			command = new HomePagePedidosCommand();
-		} else if ("update_pedidos_page".equals(action)) {
-			command = new UpdatePedidoPageCommand();
-		} else if ("update_pedido".equals(action)) {
-			command = new UpdatePedidoCommand();
+		} else {
+			command = new ErrorCommand();
 		}
 		
 		var view = command.execute(request, response);

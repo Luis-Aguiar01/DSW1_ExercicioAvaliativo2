@@ -15,6 +15,6 @@ public class UpdatePedidoPageCommand implements Command {
 		var pedidoDao = new PedidoDaoFactory().factory();
 		var pedido = pedidoDao.findById(id);
 		request.setAttribute("pedido", pedido);
-		return "update-pedido.jsp";
+		return "/logged/update-pedido.jsp";
 	}
 }

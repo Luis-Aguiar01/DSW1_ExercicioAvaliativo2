@@ -15,6 +15,10 @@ public class DatabaseConnectionFactory {
 		this.type = type;
 	}
 	
+	public DatabaseType getType() {
+		return type;
+	}
+	
 	public Connection factory() throws SQLException {
 		switch (type) {
 			case MYSQL:

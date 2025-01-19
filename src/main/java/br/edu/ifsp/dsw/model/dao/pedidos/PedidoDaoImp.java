@@ -9,12 +9,24 @@ import br.edu.ifsp.dsw.model.entity.Pedido;
 
 class PedidoDaoImp implements PedidoDao {
 	
-	private static final String CREATE_PEDIDO_SQL = "INSERT INTO pedido (endereco_entrega, valor, descricao, email_usuario) VALUES (?, ?, ?, ?)";
-	private static final String DELETE_PEDIDO_SQL = "DELETE FROM pedido WHERE id_pedido = ?";
-	private static final String UPDATE_PEDIDO_SQL =  "UPDATE pedido SET endereco_entrega = ?, valor = ?, descricao = ? WHERE id_pedido = ?";
-	private static final String GET_ALL_PEDIDO_SQL = "SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario FROM pedido";
-	private static final String GET_ALL_PEDIDO_BY_EMAIL = "SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario FROM pedido WHERE email_usuario = ?";
-	private static final String FIND_PEDIDO_BY_ID = "SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario FROM pedido WHERE id_pedido = ?";
+	private static final String CREATE_SQL = 
+			"INSERT INTO pedido (id_pedido, endereco_entrega, valor, descricao, email_usuario, nome_cliente) VALUES (?, ?, ?, ?, ?, ?)";
+	
+	private static final String DELETE_SQL = "DELETE FROM pedido WHERE id_pedido = ?";
+	
+	private static final String UPDATE_SQL =  
+			"UPDATE pedido SET endereco_entrega = ?, valor = ?, descricao = ?, nome_cliente = ? WHERE id_pedido = ?";
+	
+	private static final String GET_ALL_SQL = 
+			"SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario, nome_cliente FROM pedido";
+	
+	private static final String GET_ALL_BY_NAME = 
+			"SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario, nome_cliente FROM pedido WHERE LOWER(nome_cliente) LIKE ?";
+	
+	private static final String FIND_BY_ID = 
+			"SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario, nome_cliente FROM pedido WHERE id_pedido = ?";
+	
+	private static long nextId = 1;
 	
 	private UsuarioDao usuarioDao;
 	
@@ -28,13 +40,16 @@ class PedidoDaoImp implements PedidoDao {
 		
 		if (pedido != null) {
 			try (var conn = new DatabaseConnectionFactory().factory()) {
-				var ps = conn.prepareStatement(CREATE_PEDIDO_SQL);
-				ps.setString(1, pedido.getEnderecoEntrega());
-				ps.setDouble(2, pedido.getPrice());
-				ps.setString(3, pedido.getDescricao());
-				ps.setString(4, pedido.getUsuario().getEmail());
+				var ps = conn.prepareStatement(CREATE_SQL);
+				ps.setLong(1, nextId);
+				ps.setString(2, pedido.getEnderecoEntrega());
+				ps.setDouble(3, pedido.getPrice());
+				ps.setString(4, pedido.getDescricao());
+				ps.setString(5, pedido.getUsuario().getEmail());
+				ps.setString(6, pedido.getNomeCliente());
 				
 				result = ps.executeUpdate();
+				nextId++;
 			}
 			catch (Exception e) {
 				e.printStackTrace();
@@ -49,7 +64,7 @@ class PedidoDaoImp implements PedidoDao {
 		int result = 0;
 		
 		try (var conn = new DatabaseConnectionFactory().factory()) {
-			var ps = conn.prepareStatement(DELETE_PEDIDO_SQL);
+			var ps = conn.prepareStatement(DELETE_SQL);
 			ps.setInt(1, idPedido);
 			
 			result = ps.executeUpdate();
@@ -67,12 +82,13 @@ class PedidoDaoImp implements PedidoDao {
 		
 		if (newPedidoData != null) {
 			try (var conn = new DatabaseConnectionFactory().factory()) {
-				var ps = conn.prepareStatement(UPDATE_PEDIDO_SQL);
+				var ps = conn.prepareStatement(UPDATE_SQL);
 				ps.setString(1, newPedidoData.getEnderecoEntrega());
 				ps.setDouble(2, newPedidoData.getPrice());
 				ps.setString(3, newPedidoData.getDescricao());
-				ps.setInt(4, idPedido);
-				
+				ps.setString(4, newPedidoData.getNomeCliente());
+				ps.setInt(5, idPedido);
+					
 				result = ps.executeUpdate();
 			}
 			catch (Exception e) {
@@ -89,7 +105,7 @@ class PedidoDaoImp implements PedidoDao {
 		var pedidos = new ArrayList<Pedido>();
 		
 		try (var conn = new DatabaseConnectionFactory().factory()) {
-			var ps = conn.prepareStatement(GET_ALL_PEDIDO_SQL);
+			var ps = conn.prepareStatement(GET_ALL_SQL);
 			var rs = ps.executeQuery();
 			
 			while (rs.next()) {
@@ -98,6 +114,7 @@ class PedidoDaoImp implements PedidoDao {
 				pedido.setEnderecoEntrega(rs.getString("endereco_entrega"));
 				pedido.setIdPedido(rs.getInt("id_pedido"));
 				pedido.setPrice(rs.getDouble("valor"));
+				pedido.setNomeCliente(rs.getString("nome_cliente"));
 				
 				var user = usuarioDao.findByEmail(rs.getString("email_usuario"));
 				pedido.setUsuario(user);
@@ -113,12 +130,12 @@ class PedidoDaoImp implements PedidoDao {
 	}
 
 	@Override
-	public List<Pedido> getAllByEmail(String email) {
-var pedidos = new ArrayList<Pedido>();
+	public List<Pedido> getAllByName(String name) {
+		var pedidos = new ArrayList<Pedido>();
 		
 		try (var conn = new DatabaseConnectionFactory().factory()) {
-			var ps = conn.prepareStatement(GET_ALL_PEDIDO_BY_EMAIL);
-			ps.setString(1, email);
+			var ps = conn.prepareStatement(GET_ALL_BY_NAME);
+			ps.setString(1, "%" + name.toLowerCase() + "%");
 			var rs = ps.executeQuery();
 			
 			while (rs.next()) {
@@ -127,8 +144,9 @@ var pedidos = new ArrayList<Pedido>();
 				pedido.setEnderecoEntrega(rs.getString("endereco_entrega"));
 				pedido.setIdPedido(rs.getInt("id_pedido"));
 				pedido.setPrice(rs.getDouble("valor"));
+				pedido.setNomeCliente(rs.getString("nome_cliente"));
 				
-				var user = usuarioDao.findByEmail(rs.getString("email"));
+				var user = usuarioDao.findByEmail(rs.getString("email_usuario"));
 				pedido.setUsuario(user);
 				
 				pedidos.add(pedido);
@@ -146,7 +164,7 @@ var pedidos = new ArrayList<Pedido>();
 		Pedido pedido = null;
 		
 		try (var conn = new DatabaseConnectionFactory().factory()) {
-			var ps = conn.prepareStatement(FIND_PEDIDO_BY_ID);
+			var ps = conn.prepareStatement(FIND_BY_ID);
 			ps.setInt(1, id);
 			
 			var rs = ps.executeQuery();
@@ -157,6 +175,7 @@ var pedidos = new ArrayList<Pedido>();
 				pedido.setEnderecoEntrega(rs.getString("endereco_entrega"));
 				pedido.setIdPedido(rs.getInt("id_pedido"));
 				pedido.setPrice(rs.getDouble("valor"));
+				pedido.setNomeCliente(rs.getString("nome_cliente"));
 				
 				var user = usuarioDao.findByEmail(rs.getString("email_usuario"));
 				pedido.setUsuario(user);

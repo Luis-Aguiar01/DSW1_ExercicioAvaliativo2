@@ -7,6 +7,7 @@ CREATE TABLE usuario (
 CREATE TABLE pedido (
 	id_pedido INT AUTO_INCREMENT PRIMARY KEY,
     endereco_entrega VARCHAR(200) NOT NULL,
+    nome_cliente VARCHAR(100) NOT NULL,
     valor DECIMAL(10, 2) NOT NULL,
     descricao VARCHAR(300),
     email_usuario VARCHAR(50) NOT NULL,

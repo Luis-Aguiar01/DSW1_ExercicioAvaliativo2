@@ -12,12 +12,11 @@ public class DeletePedidoCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		var id = Integer.parseInt(request.getParameter("id"));
-		System.out.println(id);
 		var pedidoDao = new PedidoDaoFactory().factory();
 		pedidoDao.delete(id);
 
 		var pedidos = pedidoDao.getAll();
 		request.setAttribute("pedidos", pedidos);
-		return "pedidos.jsp";
+		return "/logged/pedidos.jsp";
 	}
 }

@@ -17,18 +17,19 @@ public class RegisterPedidoCommand implements Command {
 		var price = Double.parseDouble(request.getParameter("price"));
 		var descricao = request.getParameter("descricao");
 		var email = request.getParameter("email");
-		
+		var nomeCliente = request.getParameter("cliente");
+			
 		var pedidoDao = new PedidoDaoFactory().factory();
 		var userDao = new UsuarioDaoFactory().factory();
 		
 		var findedUser = userDao.findByEmail(email);
 			
 		if (findedUser == null) {
-			return "register-pedido.jsp?error=true";
+			return "/logged/register-pedido.jsp?error=true";
 		}
 		
-		pedidoDao.create(new Pedido(address, price, descricao, findedUser));
+		pedidoDao.create(new Pedido(address, price, descricao, findedUser, nomeCliente));
 		
-		return "register-pedido.jsp?error=false";
+		return "/logged/register-pedido.jsp?error=false";
 	}	
 }
