@@ -16,6 +16,6 @@ public class SearchOrdersByCustomerCommand implements Command {
 		var pedidosByName = pedidosDao.getAllByName(name);
 		
 		request.setAttribute("pedidos", pedidosByName);
-		return "/logged/relatorios.jsp";
+		return "/logged/pedidos.jsp";
 	}
 }

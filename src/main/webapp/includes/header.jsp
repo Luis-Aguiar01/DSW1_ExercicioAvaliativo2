@@ -24,11 +24,6 @@
 			<span>Pedidos</span>
 		</a>
 		
-		<a href="logged.do?action=page_relatorios" class="flex items-center gap-2 border-b-2 border-transparent hover:border-white pb-1 text-lg font-bold">
-			<span class="material-icons text-4xl">description</span>
-			<span>Relatórios</span>
-		</a>
-		
 		<a href="logged.do?action=logout" class="bg-red-700 py-4 px-4 hover:bg-red-500 font-bold rounded-lg">
 			<button>Logout</button>
 		</a>

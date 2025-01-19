@@ -15,9 +15,23 @@ class PedidoDaoImp implements PedidoDao {
 	private static final String GET_ALL_SQL = "SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario, nome_cliente FROM pedido";
 	private static final String GET_ALL_BY_NAME = "SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario, nome_cliente FROM pedido WHERE LOWER(nome_cliente) LIKE ?";
 	private static final String FIND_BY_ID = "SELECT id_pedido, endereco_entrega, valor, descricao, email_usuario, nome_cliente FROM pedido WHERE id_pedido = ?";
+	private static final String GET_NEXT_ID = "SELECT MAX(id_pedido) FROM pedido";
 	
 	// Precisei criar o ID em um campo estático, porque que o Postgres não tem o auto_increment do MySQL
 	private static long nextId = 1;
+	
+	static {
+		try (var conn = new DatabaseConnectionFactory().factory();
+			 var ps = conn.prepareStatement(GET_NEXT_ID);
+			 var rs = ps.executeQuery()) {
+			if (rs.next()) {
+				nextId = rs.getInt(1) + 1;
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	private UsuarioDao usuarioDao;
 	

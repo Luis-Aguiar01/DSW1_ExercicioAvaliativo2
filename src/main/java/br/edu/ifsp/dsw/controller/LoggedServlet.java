@@ -35,8 +35,6 @@ public class LoggedServlet extends HttpServlet {
 			command = new UpdateOrderCommand();
 		} else if ("search_pedidos_usuario".equals(action)) {
 			command = new SearchOrdersByCustomerCommand();
-		} else if ("page_relatorios".equals(action)) {
-			command = new ReportRegistrationPageCommand();
 		} else {
 			command = new ErrorCommand();
 		}
