@@ -17,7 +17,7 @@ public class AuthenticationFilter implements Filter {
 		if (session != null && session.getAttribute("user") != null) {
 			chain.doFilter(request, response);
 		} else {
-			var dispatcher = request.getRequestDispatcher("index.jsp");
+			var dispatcher = request.getRequestDispatcher("/disconnected.do?action=login_page");
 			dispatcher.forward(request, response);
 		}
 	}

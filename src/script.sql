@@ -1,3 +1,10 @@
+-- As tabelas são criadas na inicialização, só é preciso criar o schema e colocar a conexão dele
+-- na classe de conexão do banco de dados. O admin também é criado programaticamente.
+
+CREATE DATABASE IF NOT EXISTS prova_dsw;
+
+USE prova_dsw;
+
 CREATE TABLE IF NOT EXISTS usuario (
 	email VARCHAR(50) PRIMARY KEY,
 	nome VARCHAR(100) NOT NULL,
@@ -14,3 +21,5 @@ CREATE TABLE IF NOT EXISTS pedido (
 	FOREIGN KEY (email_usuario) REFERENCES usuario(email)
 	ON UPDATE CASCADE ON DELETE CASCADE
 );
+
+INSERT INTO usuario (email, nome, senha) VALUES ('admin@admin', 'admin', 'admin');

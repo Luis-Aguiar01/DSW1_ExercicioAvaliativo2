@@ -8,7 +8,7 @@ public class DatabaseConnectionFactory {
 	private DatabaseType type;
 	
 	public DatabaseConnectionFactory() {
-		this.type = DatabaseType.POSTGRE;
+		this.type = DatabaseType.MYSQL;
 	}
 	
 	public DatabaseConnectionFactory(DatabaseType type) {
